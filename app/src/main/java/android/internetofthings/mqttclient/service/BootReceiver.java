@@ -5,6 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+/**
+ * https://developer.motorolasolutions.com/docs/DOC-2315
+ */
+
 public class BootReceiver extends BroadcastReceiver
 {
 	@Override

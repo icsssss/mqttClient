@@ -1,15 +1,13 @@
 package android.internetofthings.mqttclient;
 
-import android.app.Fragment;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
-import android.internetofthings.mqttclient.fragment.ClientConnectionFragment;
+import android.internetofthings.mqttclient.fragment.UserRequestFragment;
 import android.internetofthings.mqttclient.service.MQTTservice;
-import android.net.Uri;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
@@ -26,8 +24,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * https://developer.motorolasolutions.com/docs/DOC-2315
+ * edited by Giorgio
+ */
 
-public class RootActivity extends ActionBarActivity implements ClientConnectionFragment.OnFragmentInteractionListener {
+public class RootActivity extends ActionBarActivity implements UserRequestFragment.OnFragmentInteractionListener {
 
     private Messenger service = null;
     private final Messenger serviceHandler = new Messenger(new ServiceHandler());
@@ -35,7 +37,6 @@ public class RootActivity extends ActionBarActivity implements ClientConnectionF
     private IntentFilter intentFilter = null;
     private PushReceiver pushReceiver;
 
-    //private ClientConnectionFragment instanceFragment=null;
     private View clientconnectionView;
 
     @Override
@@ -53,7 +54,7 @@ public class RootActivity extends ActionBarActivity implements ClientConnectionF
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new ClientConnectionFragment())
+                    .add(R.id.container, new UserRequestFragment())
                     .commit();
         }
 
@@ -64,7 +65,7 @@ public class RootActivity extends ActionBarActivity implements ClientConnectionF
         public void onServiceConnected(ComponentName arg0, IBinder binder) {
             service = new Messenger(binder);
             Bundle data = new Bundle();
-            //data.putSerializable(MQTTservice.CLASSNAME, MainActivity.class);
+            data.putSerializable(MQTTservice.CLASSNAME, RootActivity.class);
             data.putCharSequence(MQTTservice.INTENTNAME, "com.example.MQTT.PushReceived");
             Message msg = Message.obtain(null, MQTTservice.REGISTER);
             msg.setData(data);

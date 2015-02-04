@@ -24,14 +24,17 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+/**
+ * created by Giorgio
+ */
 
-public class ClientConnectionFragment extends Fragment {
+public class UserRequestFragment extends Fragment {
 
     private View rootView=null;
 
     private OnFragmentInteractionListener mListener;
 
-    public ClientConnectionFragment() {
+    public UserRequestFragment() {
         // Required empty public constructor
     }
 

@@ -26,6 +26,11 @@ import android.os.RemoteException;
 import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
+/**
+ * https://developer.motorolasolutions.com/docs/DOC-2315
+ * edited by Giorgio
+ */
+
 
 public class MQTTservice extends Service
 {
@@ -192,7 +197,12 @@ public class MQTTservice extends Service
 		CONNECTING,
 		CONNECTED
 	}
-	
+
+    /**
+     *  MQTTConnection manages the connection to, and communication with, a message broker
+     *  but most of the real work is performed by the inner class MsgHandler
+     */
+
 	private class MQTTConnection extends Thread
 	{
 		private Class<?> launchActivity = null;
@@ -232,7 +242,12 @@ public class MQTTservice extends Service
 		{
 			intentName = name;
 		}
-		
+
+        /**
+         * MsgHandler manages the connection to a broker, makes requests to
+         * the broker on behalf of clients, and receives messages from the broker
+         */
+
 		private class MsgHandler extends Handler implements MqttCallback
 		{
 		    private final String HOST = "iot.eclipse.org";
