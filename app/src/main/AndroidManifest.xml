@@ -12,8 +12,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-        <!-- Mqtt Service -->
-        <service android:name="org.eclipse.paho.android.service.MqttService" ></service>
+        <service android:name="android.internetofthings.mqttclient.service.MQTTservice" ></service>
 
         <activity
             android:name=".RootActivity"
@@ -30,9 +29,6 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
             </intent-filter>
         </receiver>
-
-        <service android:name="android.internetofthings.mqttclient.service.MQTTservice" ></service>
-
 
     </application>
 
