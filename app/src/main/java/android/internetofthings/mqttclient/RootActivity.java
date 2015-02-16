@@ -87,7 +87,7 @@ public class RootActivity extends ActionBarActivity implements UserRequestFragme
     protected void onStart()
     {
         super.onStart();
-        bindService(new Intent(this, MQTTservice.class), serviceConnection, Context.BIND_AUTO_CREATE);
+        bindService(new Intent(this, MQTTservice.class), serviceConnection, 0);
     }
 
     @Override
